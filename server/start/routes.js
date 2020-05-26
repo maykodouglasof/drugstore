@@ -23,7 +23,9 @@ Route.get('/', () => {
 Route.post("/users", "UserController.create");
 Route.post("/sessions", "SessionController.create");
 
-Route.get("/products", "ProductController.index");
+Route.get("products", "ProductController.index");
+
+Route.post("products", "ProductController.store").middleware("auth");
 
 Route.post("products/:id/images", "ImageController.store").middleware("auth");
 
