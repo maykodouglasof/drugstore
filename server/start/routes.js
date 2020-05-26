@@ -23,7 +23,7 @@ Route.get('/', () => {
 Route.post("/users", "UserController.create");
 Route.post("/sessions", "SessionController.create");
 
-Route.resource("products", "ProductController").apiOnly().middleware("auth");
+Route.get("/products", "ProductController.index");
 
 Route.post("products/:id/images", "ImageController.store").middleware("auth");
 

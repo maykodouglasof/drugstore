@@ -1,15 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MdNotifications } from "react-icons/md";
-import { login, logout } from "../../services/auth";
+import { isAuthenticated, logout } from "../../services/auth";
 
 import DrugStoreLogo from "../../assets/drugstore-logo.svg";
-import Avatar from "../../assets/avatar.jpg";
 
 import { Container, Content, LeftContent, RightContent } from "./styled";
 
 const Header = () => {
-  let logged = login();
+  let logged = isAuthenticated();
 
   const handleLogout = () => {
     logout();
@@ -26,31 +24,38 @@ const Header = () => {
         </LeftContent>
 
         <RightContent>
-          {logged && (
-            <>
-              <button type="button">
-                <MdNotifications size={24} />
-              </button>
-              <Link to="/">
-                <div>
-                  <strong>Mayko Douglas</strong>
-                  <small>maykodouglasbr@gmail.com</small>
-                </div>
-
-                <img src={Avatar} alt="Mayko Douglas" />
-              </Link>
-            </>
-          )}
-          {!logged && (
-            <>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/signup">Cadastrar</Link>
-              </li>
-            </>
-          )}
+          <ul>
+            {logged && (
+              <>
+                <li>
+                  <Link to="/my-account">Minha Conta</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout}>Sair</button>
+                </li>
+                <li>
+                  <Link to="/add-product" className="button">
+                    Cadastrar um Produto
+                  </Link>
+                </li>
+              </>
+            )}
+            {!logged && (
+              <>
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+                <li>
+                  <Link to="/signup">Cadastrar</Link>
+                </li>
+                <li>
+                  <Link to="/add-product" className="button">
+                    Cadastrar um Produto
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
         </RightContent>
       </Content>
     </Container>

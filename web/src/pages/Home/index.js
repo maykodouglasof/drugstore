@@ -26,90 +26,24 @@ export default function Home() {
 
   return (
     <ProductList>
-      <li>
-        <img
-          src="https://www.doril.com.br/images/produto-doril.png"
-          alt="Doril"
-        />
-        <strong>Doril</strong>
-        <span>22</span>
+      {products.map((product) => (
+        <li key={String(product.id)}>
+          <img
+            src="https://www.doril.com.br/images/produto-doril.png"
+            alt={product.title}
+          />
+          <strong>{product.title}</strong>
+          <span>{product.priceFormatted}</span>
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={18} color="#fff" />
-            {0}
-          </div>
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-
-      <li>
-        <img
-          src="https://www.doril.com.br/images/produto-doril.png"
-          alt="Doril"
-        />
-        <strong>Doril</strong>
-        <span>22</span>
-
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={18} color="#fff" />
-            {0}
-          </div>
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-
-      <li>
-        <img
-          src="https://www.doril.com.br/images/produto-doril.png"
-          alt="Doril"
-        />
-        <strong>Doril</strong>
-        <span>R$ 22,00</span>
-
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={18} color="#fff" />
-            {0}
-          </div>
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-
-      <li>
-        <img
-          src="https://www.doril.com.br/images/produto-doril.png"
-          alt="Doril"
-        />
-        <strong>Doril</strong>
-        <span>22</span>
-
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" />
-            {0}
-          </div>
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-
-      <li>
-        <img
-          src="https://www.doril.com.br/images/produto-doril.png"
-          alt="Doril"
-        />
-        <strong>Doril</strong>
-        <span>22</span>
-
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" />
-            {0}
-          </div>
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
+          <button type="button">
+            <div>
+              <MdAddShoppingCart size={18} color="#fff" />
+              {0}
+            </div>
+            <span>ADICIONAR AO CARRINHO</span>
+          </button>
+        </li>
+      ))}
     </ProductList>
   );
 }

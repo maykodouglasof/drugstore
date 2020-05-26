@@ -1,18 +1,28 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from "react";
+import { Switch } from "react-router-dom";
 
-import Home from './pages/Home';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import AddProduct from './pages/AddProduct';
+import RouteHandler from "./components/RouteHandler";
+
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import AddProduct from "./pages/AddProduct";
 
 export default function Routes() {
   return (
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/add-product" component={AddProduct} />
-      </Switch>
+    <Switch>
+      <RouteHandler exact path="/">
+        <Home />
+      </RouteHandler>
+      <RouteHandler exact path="/login">
+        <Login />
+      </RouteHandler>
+      <RouteHandler exact path="/signup">
+        <SignUp />
+      </RouteHandler>
+      <RouteHandler exact path="/add-product">
+        <AddProduct />
+      </RouteHandler>
+    </Switch>
   );
 }
