@@ -16,7 +16,7 @@
 
 <p align="center">
   <img alt="home" src=".github/home.jpeg" width="100%">
-  <img alt="home" src=".github/notfound.jpeg" width="100%">
+  <img alt="notfound" src=".github/not-found.jpeg" width="100%">
 </p>
 
 ## :rocket: Tecnologias
