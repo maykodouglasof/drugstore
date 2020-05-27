@@ -29,7 +29,7 @@ export default function Home() {
       {products.map((product) => (
         <li key={String(product.id)}>
           <img
-            src="https://www.doril.com.br/images/novo/produto-doril-dc500.png"
+            src={products.url}
             alt={product.title}
           />
           <strong>{product.title}</strong>

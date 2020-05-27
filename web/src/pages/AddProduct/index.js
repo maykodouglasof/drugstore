@@ -1,41 +1,58 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState } from "react";
 
 import api from "../../services/api";
-import { login } from "../../services/auth";
 
 import { Form, Container } from "./styles";
 
-class SignIn extends Component {
-  state = {
-    email: "",
-    password: "",
-    error: "",
-  };
+export default function AddProduct() {
+  const [ title, setTitle ] = useState("");
+  const [ description, setDescription ] = useState("");
+  const [ price, setPrice ] = useState("");
+  const [ files, setFiles ] = useState("");
 
-  handleSignIn = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const { email, password } = this.state;
-    if (!email || !password) {
-      this.setState({ error: "Preencha e-mail e senha para continuar!" });
-    } else {
-      try {
-        const response = await api.post("/sessions", { email, password });
-        login(response.data.token);
-        this.props.history.push("/app");
-      } catch (err) {
-        this.setState({
-          error:
-            "Houve um problema com o login, verifique suas credenciais. T.T",
-        });
+
+    try {
+      const { title, description, price, files } = this.state;
+
+      if (!title || !description || !price ) {
+        this.setState({ error: "Preencha todos os campos" });
+        return;
       }
+
+      const {
+        data: { id }
+      } = await api.post("/products", {
+        title,
+        description,
+        price,
+      });
+
+      if (!files.length) this.props.history.push("/");
+
+      const data = new FormData();
+      files.map((file, index) =>
+        data.append(`image[${index}]`, file, file.name)
+      );
+
+      const config = {
+        headers: {
+          "content-type": "multipart/form-data"
+        }
+      };
+
+      await api.post(`/products/${id}/images`, data, config);
+
+      this.props.history.push("/");
+    } catch (err) {
+      this.setState({ error: "Ocorreu algum erro ao adicionar o produto" });
     }
   };
 
-  render() {
     return (
       <Container>
-        <Form onSubmit={this.handleSignIn}>
+        <Form>
         <strong>Cadastrar Produto</strong>
           {this.state.error && <p>{this.state.error}</p>}
           <label>Digite o nome do Produto:</label>
@@ -63,6 +80,5 @@ class SignIn extends Component {
       </Container>
     );
   }
-}
 
-export default withRouter(SignIn);
+

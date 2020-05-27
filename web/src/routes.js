@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import AddProduct from "./pages/AddProduct";
+import NotFound from "./pages/NotFound";
 
 export default function Routes() {
   return (
@@ -22,6 +23,9 @@ export default function Routes() {
       </RouteHandler>
       <RouteHandler exact path="/add-product">
         <AddProduct />
+      </RouteHandler>
+      <RouteHandler>
+        <NotFound />
       </RouteHandler>
     </Switch>
   );

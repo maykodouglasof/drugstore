@@ -10,8 +10,16 @@
 
 <br>
 
+<h1 align="center">
+    Telas
+</h1>
+
 <p align="center">
-  <img alt="Frontend" src=".github/home.jpeg" width="100%">
+  <img alt="home" src=".github/home.jpeg" width="100%">
+</p>
+
+<p align="center">
+  <img alt="home" src=".github/notfound.jpeg" width="100%">
 </p>
 
 ## :rocket: Tecnologias
