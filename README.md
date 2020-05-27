@@ -16,9 +16,6 @@
 
 <p align="center">
   <img alt="home" src=".github/home.jpeg" width="100%">
-</p>
-
-<p align="center">
   <img alt="home" src=".github/notfound.jpeg" width="100%">
 </p>
 
