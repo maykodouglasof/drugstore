@@ -15,7 +15,7 @@
 </h1>
 
 <p align="center">
-  <img alt="home-1" src=".github/home.jpeg" width="100%">
+  <img alt="home-1" src=".github/home-1.jpeg" width="100%">
   <img alt="notfound" src=".github/not-found.jpeg" width="100%">
 </p>
 
