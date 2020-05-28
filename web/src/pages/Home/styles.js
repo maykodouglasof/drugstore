@@ -1,66 +1,68 @@
 import styled from "styled-components";
-import { darken } from "polished";
 
-export const ProductList = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-  list-style: none;
-  margin: 20px;
-  @media (max-width: 650px) {
-    grid-template-columns: 1fr;
-  }
-  li {
+export const SearchArea = styled.div`
+  background-color: #005aad;
+  border-bottom: 1px solid #ccc;
+  padding: 40px 0;
+  .searchBox {
+    border-radius: 5px;
     display: flex;
-    flex-direction: column;
-    background: #fff;
+    flex-direction: row;
+    height: 60px;
     border-radius: 4px;
-    padding: 20px;
-    img {
-      align-self: center;
-      max-width: 250px;
-    }
-    > strong {
-      font-size: 18px;
-      line-height: 20px;
-      color: #333;
-      margin-top: 5px;
-    }
-    > span {
-      font-size: 21px;
-      font-weight: bold;
-      margin: 5px 0 20px;
-      color: #111111;
-    }
-    button {
-      background: #005aad;
-      color: #fff;
-      border: 0;
-      border-radius: 4px;
-      overflow: hidden;
-      margin-top: auto;
+    background-color: #fff;
+    border: 0.5px solid #d2d2d2;
+    align-items: center;
+    position: relative;
+    form {
+      flex: 1;
       display: flex;
-      align-items: center;
-      transition: background 0.2s;
-      cursor: pointer;
-      &:hover {
-        background: ${darken(0.03, "#005aad")};
+      input {
+        width: 100%;
+        padding: 16px 24px;
+        border-radius: 4px;
+        border: none;
+        font-size: 20px;
+        outline: none;
+        color: #4a4a4a;
       }
-      div {
-        display: flex;
-        align-items: center;
-        padding: 12px;
-        background: rgba(0, 0, 0, 0.1);
+      button {
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+        text-transform: none;
+        margin: 10px;
         svg {
-          margin-right: 5px;
+          color: #005aad;
         }
       }
-      span {
-        flex: 1;
-        font-size: 14px;
-        text-align: center;
-        font-weight: bold;
+      button:hover {
+        background-color: #005aad;
+        svg {
+          color: #fff;
+        }
       }
     }
+  }
+`;
+
+export const PageArea = styled.div`
+  .list {
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1152px;
+    overflow-x: hidden;
+    padding-bottom: 0px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin-left: -24px;
+  }
+  .seeAllLink {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
   }
 `;

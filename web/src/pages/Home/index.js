@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { MdAddShoppingCart } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { SearchArea, PageArea } from "./styles";
+import { MdSearch } from "react-icons/md";
 
 import api from "../../services/api";
 
-import { formatPrice } from "../../utils/format";
+import { PageContainer } from "../../components/MainComponents";
+import ProductItem from "../../components/partials/ProductItem";
 
-import { ProductList } from "./styles";
+import { formatPrice } from "../../utils/format";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -25,25 +28,31 @@ export default function Home() {
   }, []);
 
   return (
-    <ProductList>
-      {products.map((product) => (
-        <li key={String(product.id)}>
-          <img
-            src={products.url}
-            alt={product.title}
-          />
-          <strong>{product.title}</strong>
-          <span>{product.priceFormatted}</span>
-
-          <button type="button">
-            <div>
-              <MdAddShoppingCart size={18} color="#fff" />
-              {0}
-            </div>
-            <span>ADICIONAR AO CARRINHO</span>
-          </button>
-        </li>
-      ))}
-    </ProductList>
+    <>
+      <SearchArea>
+        <PageContainer>
+          <div className="searchBox">
+            <form method="GET" action="/products">
+              <input type="text" name="q" placeholder="O que você procura?" />
+              <button>
+                <MdSearch size={30} />
+              </button>
+            </form>
+          </div>
+        </PageContainer>
+      </SearchArea>
+      <PageContainer>
+        <PageArea>
+          <div className="list">
+            {products.map((i, k) => (
+              <ProductItem key={k} data={i} />
+            ))}
+          </div>
+          <Link to="/products" className="seeAllLink">
+            Ver todos
+          </Link>
+        </PageArea>
+      </PageContainer>
+    </>
   );
 }

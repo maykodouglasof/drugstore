@@ -9,7 +9,9 @@ export default createGlobalStyle`
   }
   html, body, #root {
     height: 100%;
-    background-color: #F5F3F4;
+    background-color: #f6f6f6;
+  }
+  body {
     -webkit-font-smoothing: antialiased;
   }
   body, input, button {
@@ -17,6 +19,15 @@ export default createGlobalStyle`
   }
   body, input, button, a {
     color: #fff;
+  }
+  a {
+    text-decoration: none;
+  }
+  ul {
+    list-style: none;
+  }
+  button {
+    cursor: pointer;
   }
 
 `;
