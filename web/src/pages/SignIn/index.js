@@ -17,7 +17,7 @@ export default function Logon() {
     try {
       const response = await api.post("/sessions", { email, password });
       login(response.data.token);
-      localStorage.setItem('userName', response.data.name);
+      
       history.push("/");
     } catch (err) {
       alert("Falha no login, tente novamente.");

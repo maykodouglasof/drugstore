@@ -23,9 +23,11 @@ Route.get('/', () => {
 Route.post("/users", "UserController.create");
 Route.post("/sessions", "SessionController.create");
 
-Route.get("products", "ProductController.index");
-
-Route.post("products", "ProductController.store").middleware("auth");
+Route.get('products', 'ProductController.index')
+Route.post('products', 'ProductController.store')
+Route.get('products/:id', 'ProductController.show')
+Route.put('products/:id', 'ProductController.update')
+Route.delete('products/:id', 'ProductController.destroy')
 
 Route.post("products/:id/images", "ImageController.store").middleware("auth");
 

@@ -6,7 +6,6 @@ import RouteHandler from "./components/RouteHandler";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import ProductPage from "./pages/ProductPage";
 import AddProduct from "./pages/AddProduct";
 import NotFound from "./pages/NotFound";
 
@@ -21,9 +20,6 @@ export default function Routes() {
       </RouteHandler>
       <RouteHandler exact path="/signup">
         <SignUp />
-      </RouteHandler>
-      <RouteHandler exact path="/product/:id">
-        <ProductPage />
       </RouteHandler>
       <RouteHandler private exact path="/add-product">
         <AddProduct />
