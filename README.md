@@ -17,6 +17,9 @@
 <p align="center">
   <img alt="home-1" src=".github/home-1.jpeg" width="100%">
   <img alt="notfound" src=".github/not-found.jpeg" width="100%">
+    <img alt="login" src=".github/login.jpeg" width="100%">
+	<img alt="signup" src=".github/signup.jpeg" width="100%">
+
 </p>
 
 ## :rocket: Tecnologias
