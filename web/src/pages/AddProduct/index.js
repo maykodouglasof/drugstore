@@ -1,84 +1,70 @@
 import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 import api from "../../services/api";
 
-import { Form, Container } from "./styles";
+import { Form, Container, File } from "./styles";
 
 export default function AddProduct() {
-  const [ title, setTitle ] = useState("");
-  const [ description, setDescription ] = useState("");
-  const [ price, setPrice ] = useState("");
-  const [ files, setFiles ] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
 
-  async function handleSubmit(e) {
+  const history = useHistory();
+
+  const user_id = localStorage.getItem("user_id");
+
+  async function handleNewProduct(e) {
     e.preventDefault();
 
+    const data = {
+      title,
+      description,
+      price,
+    };
     try {
-      const { title, description, price, files } = this.state;
-
-      if (!title || !description || !price ) {
-        this.setState({ error: "Preencha todos os campos" });
-        return;
-      }
-
-      const {
-        data: { id }
-      } = await api.post("/products", {
-        title,
-        description,
-        price,
+      await api.post("products", data, {
+        headers: {
+          Authorization: user_id,
+        },
       });
 
-      if (!files.length) this.props.history.push("/");
-
-      const data = new FormData();
-      files.map((file, index) =>
-        data.append(`image[${index}]`, file, file.name)
-      );
-
-      const config = {
-        headers: {
-          "content-type": "multipart/form-data"
-        }
-      };
-
-      await api.post(`/products/${id}/images`, data, config);
-
-      this.props.history.push("/");
+      history.push("/");
     } catch (err) {
-      this.setState({ error: "Ocorreu algum erro ao adicionar o produto" });
+      alert("Erro ao cadastrar produto, tente novamente");
     }
-  };
-
-    return (
-      <Container>
-        <Form>
-        <strong>Cadastrar Produto</strong>
-          {this.state.error && <p>{this.state.error}</p>}
-          <label>Digite o nome do Produto:</label>
-          <input
-            type="text"
-            placeholder="Nome do Produto"
-            onChange={(e) => this.setState({ email: e.target.value })}
-          />
-          <label>Digite o valor Produto:</label>
-          <input
-            type="text"
-            placeholder="Preço"
-            onChange={(e) => this.setState({ password: e.target.value })}
-          />
-          <label>Digite a descrição do Produto:</label>
-          <input
-            type="text"
-            placeholder="Descrição"
-            onChange={(e) => this.setState({ password: e.target.value })}
-          />
-          <label>Enviar imagem do Produto:</label>
-          <input type="file" multiple />
-          <button type="submit">Cadastrar Produto</button>
-        </Form>
-      </Container>
-    );
   }
 
+  return (
+    <Container>
+      <Form onSubmit={handleNewProduct}>
+        <strong>Cadastrar Produto</strong>
+        <label>Digite o nome do Produto:</label>
+        <input
+          type="text"
+          placeholder="Nome do Produto"
+          onChange={e => setTitle(e.target.value)}
+        />
+        <label>Digite o valor Produto:</label>
+        <input
+          type="text"
+          placeholder="Preço"
+          onChange={e => setPrice(e.target.value)}
+        />
+        <label>Digite a descrição do Produto:</label>
+        <input
+          type="text"
+          placeholder="Descrição"
+          onChange={e => setDescription(e.target.value)}
+        />
 
+        <div className="actions">
+          <button type="submit">Adicionar</button>
+          <button className="cancel">
+            Cancelar
+          </button>
+        </div>
+      </Form>
+    </Container>
+  );
+}

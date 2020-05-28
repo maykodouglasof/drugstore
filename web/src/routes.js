@@ -21,7 +21,7 @@ export default function Routes() {
       <RouteHandler exact path="/signup">
         <SignUp />
       </RouteHandler>
-      <RouteHandler exact path="/add-product">
+      <RouteHandler private exact path="/add-product">
         <AddProduct />
       </RouteHandler>
       <RouteHandler>

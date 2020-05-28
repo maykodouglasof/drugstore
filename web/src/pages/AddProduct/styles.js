@@ -31,16 +31,25 @@ export const Form = styled.form`
     font-size: 15px;
     border: 1px solid #ddd;
   }
-  button {
-    color: #fff;
-    font-size: 16px;
-    background: #005aad;
-    height: 56px;
-    border: 0;
-    border-radius: 5px;
-    margin-top: 30px;
-  }
-  button:hover {
-    filter: brightness(90%);
+  div.actions {
+    display: flex;
+    margin-top: 15px;
+    width: 100%;
+    justify-content: space-between;
+    button {
+      color: #ffffff;
+      font-size: 16px;
+      background: #005aad;
+      height: 56px;
+      border: 0;
+      border-radius: 5px;
+      padding: 0 30px;
+      &.cancel {
+        background: #222222;
+      }
+    }
+    button:hover {
+      filter: brightness(90%);
+    }
   }
 `;

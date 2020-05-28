@@ -1,61 +1,47 @@
-import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 import api from "../../services/api";
 import { login } from "../../services/auth";
 
 import { Form, Container } from "./styles";
 
-class SignIn extends Component {
-  state = {
-    email: "",
-    password: "",
-    error: "",
-  };
+export default function Logon() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const history = useHistory();
 
-  handleSignIn = async (e) => {
+  async function handleLogin(e) {
     e.preventDefault();
-    const { email, password } = this.state;
-    if (!email || !password) {
-      this.setState({ error: "Preencha e-mail e senha para continuar!" });
-    } else {
-      try {
-        const response = await api.post("/sessions", { email, password });
-        login(response.data.token);
-        this.props.history.push("/");
-      } catch (err) {
-        this.setState({
-          error:
-            "Houve um problema com o login, verifique suas credenciais. T.T",
-        });
-      }
+
+    try {
+      const response = await api.post("/sessions", { email, password });
+      login(response.data.token);
+      history.push("/");
+    } catch (err) {
+      alert("Falha no login, tente novamente.");
     }
-  };
-
-  render() {
-    return (
-      <Container>
-        <Form onSubmit={this.handleSignIn}>
-        <strong>Acesse a sua conta</strong>
-          
-          <input
-            type="email"
-            placeholder="Endereço de e-mail"
-            onChange={(e) => this.setState({ email: e.target.value })}
-          />
-          <input
-            type="password"
-            placeholder="Senha"
-            onChange={(e) => this.setState({ password: e.target.value })}
-          />
-          {this.state.error && <p>{this.state.error}</p>}
-          <button type="submit">Entrar</button>
-          <hr/>
-          <Link to="/signup">Não tem uma conta? Cadastre-se</Link>
-        </Form>
-      </Container>
-    );
   }
-}
 
-export default withRouter(SignIn);
+  return (
+    <Container>
+      <Form onSubmit={handleLogin}>
+        <strong>Acesse a sua conta</strong>
+
+        <input
+          type="email"
+          placeholder="Endereço de e-mail"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Senha"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Entrar</button>
+        <hr />
+        <Link to="/signup">Não tem uma conta? Cadastre-se</Link>
+      </Form>
+    </Container>
+  );
+}
