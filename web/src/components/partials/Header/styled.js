@@ -39,7 +39,7 @@ export const RightContent = styled.div`
     border: 0;
     border-radius: 4px;
     padding: 10px;
-    margin: 18px;
+    margin: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,7 +56,7 @@ export const RightContent = styled.div`
     color: #4a4a4a;
     font-weight: bold;
     text-decoration: none;
-    margin: 18px;
+    margin: 12px;
     div {
       margin-right: 16px;
       text-align: right;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { isAuthenticated, logout } from "../../../services/auth";
 import { MdNotifications, MdPermIdentity } from "react-icons/md";
@@ -10,6 +10,9 @@ import { HeaderArea, LeftContent, RightContent } from "./styled";
 
 const Header = () => {
   let logged = isAuthenticated();
+
+  const userEmail = localStorage.getItem('userEmail');
+  const username = localStorage.getItem('username');
 
   const handleLogout = () => {
     logout();
@@ -32,8 +35,8 @@ const Header = () => {
               </button>
               <Link to="/my-account">
                 <div>
-                  <strong>Mayko Douglas</strong>
-                  <small>mayko@teste.com</small>
+                  <strong>{username}</strong>
+                  <small>{userEmail}</small>
                 </div>
 
                 <img src={Avatar} alt="Mayko Douglas" />
