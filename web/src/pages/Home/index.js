@@ -59,20 +59,19 @@ export default function Home() {
             {products.map((product) => (
               <Item key={product.id}>
                 {logged && (
-                <button
-                  className="itemDelete"
-                  onClick={() => handleDeleteProduct(product.id)}
-                  type="button"
-                >
-                  <MdDelete size={20} color="#a8a8b3" />
-                </button>
+                  <button
+                    className="itemDelete"
+                    onClick={() => handleDeleteProduct(product.id)}
+                    type="button"
+                  >
+                    <MdDelete size={20} color="#a8a8b3" />
+                  </button>
                 )}
                 <Link to={`/products/${product.id}`}>
                   <div className="itemImage">
-                    <img
-                      src="https://www.doril.com.br/images/novo/produto-doril-dc500.png"
-                      alt={products.title}
-                    />
+                    {product.images.map((image) => (
+                      <img src={image.url} alt={image.path} />
+                    ))}
                   </div>
                   <div className="itemName">{product.title}</div>
                   <div className="itemPrice">{product.priceFormatted}</div>
